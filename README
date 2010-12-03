@@ -1,0 +1,27 @@
+This is Perl module Text::Xatena.
+
+INSTALLATION
+
+Test::HTML::Differences installation is straightforward. If your CPAN shell is set up,
+you should just be able to do
+
+    % cpan Test::HTML::Differences
+
+Download it, unpack it, then build it as per the usual:
+
+    % perl Makefile.PL
+    % make && make test
+
+Then install it:
+
+    % make install
+
+DOCUMENTATION
+
+Test::HTML::Differences documentation is available as in POD. So you can do:
+
+    % perldoc Test::HTML::Differences
+
+to read the documentation online with your favorite pager.
+
+cho45
