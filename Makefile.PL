@@ -3,8 +3,10 @@ name 'Test-HTML-Differences';
 all_from 'lib/Test/HTML/Differences.pm';
 
 requires 'Exporter::Lite';
+requires 'Test::Differences';
+requires 'HTML::Parser';
 
-build_requires 'Test::Most';
+build_requires 'Test::Base';
 
 # Module::Install::AuthorTests
 author_tests('xt');

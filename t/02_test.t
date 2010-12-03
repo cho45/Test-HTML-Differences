@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use Test::Base -Base;
-use Test::Differences;
 use Test::HTML::Differences;
 
 plan tests => 1 * blocks;

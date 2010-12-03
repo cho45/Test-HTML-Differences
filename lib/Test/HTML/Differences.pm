@@ -97,16 +97,39 @@ __END__
 
 =head1 NAME
 
-Test::HTML::Differences - 
+Test::HTML::Differences - Compare two htmls and show differences if not ok
 
 =head1 SYNOPSIS
 
+  use Test::Base -Base;
   use Test::HTML::Differences;
+
+  plan tests => 1 * blocks;
+  
+  run {
+      my ($block) = @_;
+      eq_or_diff_html(
+          $block->input,
+          $block->expected,
+          $block->name
+      );
+  };
+
+  __END__
+  === test
+  --- input
+  <div class="section">foo <a href="/">foo</a></div>
+  --- expected
+  <div class="section">
+    foo <a href="/">foo</a>
+  </div>
 
 
 =head1 DESCRIPTION
 
-Test::HTML::Differences is 
+Test::HTML::Differences is test utility that compares two strings as HTMLs and show differences with Test::Differences.
+
+Supplied HTML strings are normalized and show pretty formatted as it is shown.
 
 =head1 AUTHOR
 
