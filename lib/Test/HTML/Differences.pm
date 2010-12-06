@@ -47,6 +47,7 @@ sub eq_or_diff_html ($$;$) { ## no critic
 		$orig->(@_);
 	};
 
+	local $Test::Builder::Level = $Test::Builder::Level + 1;
 	table_diff();
 	eq_or_diff($got, $expected, $desc);
 }

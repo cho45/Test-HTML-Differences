@@ -74,7 +74,7 @@ foo <a href="/">foo</a>
 </div>
 </foo>
 --- test_result
-#   Failed test at lib/Test/HTML/Differences.pm line 51.
+#   Failed test at t/03_output.t line 47.
 # +----+-----------------------+----+-------------------------+
 # | Elt|Got                    | Elt|Expected                 |
 # +----+-----------------------+----+-------------------------+
