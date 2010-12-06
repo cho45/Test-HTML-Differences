@@ -1,18 +1,15 @@
 use strict;
 use warnings;
 use Test::Base -Base;
-use Test::Differences;
-use Test::HTML::Differences;
+use Test::HTML::Differences '-color';
 
 plan tests => 1 * blocks;
 
 run {
 	my ($block) = @_;
-	my $input = Test::HTML::Differences::normalize_html($block->input, 1);
-	my $expected = [ split /\n/, $block->expected ];
-	eq_or_diff(
-		$input,
-		$expected,
+	eq_or_diff_html(
+		$block->input,
+		$block->expected,
 		$block->name
 	);
 };
@@ -48,14 +45,4 @@ foo <a href="/">foo</a>
   foo
   <a href="/">foo</a>
 </div>
-
-=== spaces (users who want to test white spaces should use more low-level test)
---- input
-<ul>
-  <li> foobar</li>
-</ul>
---- expected
-<ul>
-  <li>foobar</li>
-</ul>
 
