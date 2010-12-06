@@ -1,6 +1,6 @@
 NAME
-    Test::HTML::Differences - Compare two htmls and show differences if not
-    ok
+    Test::HTML::Differences - Compare two html and show differences if it is
+    not ok
 
 SYNOPSIS
       use Test::Base -Base;
@@ -28,10 +28,25 @@ SYNOPSIS
 
 DESCRIPTION
     Test::HTML::Differences is test utility that compares two strings as
-    HTMLs and show differences with Test::Differences.
+    HTML and show differences with Test::Differences.
 
     Supplied HTML strings are normalized and show pretty formatted as it is
     shown.
+
+    This module does not test all HTML node strictly, leading/trailing
+    white-space characters that are removed by the normalize function, but
+    do test whole structures of the HTML.
+
+    For example:
+
+      <span> foo</span>
+
+    is called equal to following:
+
+      <span>foo</span>
+
+    You must test these case by other methods, for example, old-school like
+    or is function as you want to test it.
 
 AUTHOR
     cho45 <cho45@lowreal.net>

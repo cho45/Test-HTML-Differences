@@ -2,9 +2,12 @@ use inc::Module::Install;
 name 'Test-HTML-Differences';
 all_from 'lib/Test/HTML/Differences.pm';
 
-requires 'Exporter::Lite';
 requires 'Test::Differences';
 requires 'HTML::Parser';
+requires 'Text::Diff';
+requires 'Text::Diff::Table';
+requires 'parent';
+requires 'HTML::Entities';
 
 build_requires 'Test::Base';
 
