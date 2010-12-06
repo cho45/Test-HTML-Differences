@@ -86,3 +86,37 @@ foo <a href="/">foo</a>
 # |    |                       *   5|</foo>                   *
 # +----+-----------------------+----+-------------------------+
 
+=== test
+--- test_input
+<div class="section">
+	<div class="section">
+		<p>foo</p>
+	</div>
+	<div class="section">
+		<p>foo</p>
+	</div>
+</div>
+--- test_expected
+<div class="section">
+	<div class="section">
+		<p>foo</p>
+	</div>
+</div>
+<div class="section">
+	<p>foo</p>
+</div>
+--- test_result
+#   Failed test at t/03_output.t line 47.
+# +----+-------------------------+----+-------------------------+
+# | Elt|Got                      | Elt|Expected                 |
+# +----+-------------------------+----+-------------------------+
+# |   0|<div class="section">    |   0|<div class="section">    |
+# |   1|  <div class="section">  |   1|  <div class="section">  |
+# |   2|    <p>foo</p>           |   2|    <p>foo</p>           |
+# |   3|  </div>                 |   3|  </div>                 |
+# |    |                         *   4|</div>                   *
+# |   4|  <div class="section">  |   5|<div class="section">    |
+# |   5|    <p>foo</p>           |   6|  <p>foo</p>             |
+# *   6|  </div>                 *    |                         |
+# |   7|</div>                   |   7|</div>                   |
+# +----+-------------------------+----+-------------------------+ 
