@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::Base -Base;
-use Test::HTML::Differences '-color';
+use Test::HTML::Differences -color;
 
 plan tests => 1 * blocks;
 

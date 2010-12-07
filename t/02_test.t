@@ -46,3 +46,21 @@ foo <a href="/">foo</a>
   <a href="/">foo</a>
 </div>
 
+=== test
+--- input
+<!-- foobar -->
+foo
+--- expected
+<!-- foobar -->
+foo
+
+=== test
+--- input
+<div>
+<!-- foobar -->
+</div>
+--- expected
+<div>
+<!-- foobar -->
+</div>
+

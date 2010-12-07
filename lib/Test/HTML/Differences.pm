@@ -99,7 +99,7 @@ sub normalize_html {
 	$p->parse($s);
 	$p->eof;
 
-	my $indent = $pretty ? sub { "  " x shift } : sub { "" };
+	my $indent = $pretty ? sub { "  " x shift() . sprintf(shift, @_) } : sub { shift; sprintf(shift, @_) };
 
 	my $ret = [];
 	my $walker; $walker = sub {
@@ -107,19 +107,23 @@ sub normalize_html {
 		my ($tag, $attr, $children) = @$parent;
 
 		my $a = join ' ', map { sprintf('%s="%s"', $_, encode_entities($attr->{$_})) } sort { $a cmp $b } keys %$attr;
-		my $has_element = grep { ref($_) } @$children;
+		my $has_element = @$children > 1 || grep { ref($_) } @$children;
 		if ($has_element) {
-			push @$ret, sprintf('%s<%s%s>', $indent->($level), $tag, $a ? " $a" : "") unless $tag eq 'root';
+			push @$ret, $indent->($level, '<%s%s>', $tag, $a ? " $a" : "") unless $tag eq 'root';
 			for my $node (@$children) {
 				if (ref($node)) {
 					$walker->($node, $level + 1);
 				} else {
-					push @$ret, sprintf('%s%s', $indent->($level + 1), $node);
+					push @$ret, $indent->($level + 1, '%s', $node);
 				}
 			}
-			push @$ret, sprintf('%s</%s>', $indent->($level), $tag) unless $tag eq 'root';
+			push @$ret, $indent->($level, '</%s>', $tag) unless $tag eq 'root';
 		} else {
-			push @$ret, sprintf('%s<%s%s>%s</%s>', $indent->($level), $tag, $a ? " $a" : "", join(' ', @$children), $tag) unless $tag eq 'root';
+			if ($tag eq 'root') {
+				push @$ret, join(' ', @$children);
+			} else {
+				push @$ret, $indent->($level, '<%s%s>%s</%s>', $tag, $a ? " $a" : "", join(' ', @$children), $tag);
+			}
 		}
 	};
 	$walker->($root, -1);
@@ -133,7 +137,7 @@ __END__
 
 =head1 NAME
 
-Test::HTML::Differences - Compare two html and show differences if it is not ok
+Test::HTML::Differences - Compare two html structures and show differences if it is not same
 
 =head1 SYNOPSIS
 
@@ -165,10 +169,10 @@ Test::HTML::Differences - Compare two html and show differences if it is not ok
 
 Test::HTML::Differences is test utility that compares two strings as HTML and show differences with Test::Differences.
 
-Supplied HTML strings are normalized and show pretty formatted as it is shown.
+Supplied HTML strings are normalized to data structure and show pretty formatted as it is shown.
 
 This module does not test all HTML node strictly,
-leading/trailing white-space characters that are removed by the normalize function,
+leading/trailing white-space characters are removed by the normalize function,
 but do test whole structures of the HTML.
 
 For example:
@@ -179,13 +183,22 @@ is called equal to following:
 
   <span>foo</span>
 
-You must test these case by other methods, for example, old-school like or is function as you want to test it.
+You must test these case by other methods, for example, old-school C<like> or C<is> function in Test::More as you want to test it.
+
+=head2 With Test::Differences::Color
+
+Test::HTML::Differences supports Test::Differences::Color as following:
+
+  use Test::HTML::Differences -color;
+
 
 =head1 AUTHOR
 
 cho45 E<lt>cho45@lowreal.netE<gt>
 
 =head1 SEE ALSO
+
+L<Test::Differences>, L<Test::Differences::Color>
 
 =head1 LICENSE
 
