@@ -2,7 +2,7 @@ use inc::Module::Install;
 name 'Test-HTML-Differences';
 all_from 'lib/Test/HTML/Differences.pm';
 
-requires 'Test::Differences';
+requires 'Test::Differences' => 0.50;
 requires 'Test::Differences::Color';
 requires 'HTML::Parser';
 requires 'Text::Diff';
