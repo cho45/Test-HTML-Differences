@@ -88,7 +88,7 @@ sub normalize_html {
 				sub {
 					my ($dtext) = @_;
 					$dtext =~ s/^\s+|\s+$//g;
-					push @{ $stack->[-1]->[2] }, $dtext if $dtext =~ /\S/;
+					push @{ $stack->[-1]->[2] }, encode_entities($dtext) if $dtext =~ /\S/;
 				},
 				"dtext"
 			]

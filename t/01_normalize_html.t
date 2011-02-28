@@ -78,3 +78,10 @@ foo
   <!-- foobar -->
   foo
 </div>
+
+=== test
+--- input
+<div>&lt;foobar&gt;&amp;</div>
+--- expected
+<div>&lt;foobar&gt;&amp;</div>
+
