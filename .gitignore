@@ -11,3 +11,11 @@ pod.html
 cover_db
 startup.sh
 
+/Test-HTML-Differences-*
+/.build
+/_build_params
+/Build
+/Build.bat
+!Build/
+!META.json
+!LICENSE
