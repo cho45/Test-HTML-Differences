@@ -2,7 +2,6 @@ requires 'Filter::Util::Call';
 requires 'HTML::Entities';
 requires 'HTML::Parser';
 requires 'Test::Differences', '0.5';
-requires 'Test::Differences::Color';
 requires 'Text::Diff';
 requires 'Text::Diff::Table';
 requires 'parent';

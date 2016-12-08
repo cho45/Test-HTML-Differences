@@ -51,7 +51,6 @@
             "HTML::Entities" : "0",
             "HTML::Parser" : "0",
             "Test::Differences" : "0.5",
-            "Test::Differences::Color" : "0",
             "Text::Diff" : "0",
             "Text::Diff::Table" : "0",
             "parent" : "0"
@@ -70,6 +69,6 @@
          "web" : "https://github.com/cho45/Test-HTML-Differences"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_authority" : "cpan:SATOH"
 }
