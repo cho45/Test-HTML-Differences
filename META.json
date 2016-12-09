@@ -28,7 +28,9 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.36"
+            "ExtUtils::MakeMaker" : "6.36",
+            "Test::Base" : "0",
+            "Test::More" : "0"
          }
       },
       "configure" : {
@@ -69,6 +71,6 @@
          "web" : "https://github.com/cho45/Test-HTML-Differences"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_authority" : "cpan:SATOH"
 }

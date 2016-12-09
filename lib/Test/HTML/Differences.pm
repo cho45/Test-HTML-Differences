@@ -9,7 +9,7 @@ use Text::Diff;
 use Text::Diff::Table;
 use Test::Differences;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 our @EXPORT = qw(
 	eq_or_diff_html
